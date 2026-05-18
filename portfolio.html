@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abdullah Babar — Brand Strategist</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#0D0D0D;
+    --surface:#161616;
+    --card:#1E1E1E;
+    --accent:#49f31a;
+    --accent2:#2db315;
+    --text:#F5F5F5;
+    --muted:#888;
+    --border:#2A2A2A;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5%;background:rgba(13,13,13,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  .logo{font-size:1.1rem;font-weight:700;letter-spacing:2px;color:var(--accent);text-transform:uppercase;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;letter-spacing:1px;text-transform:uppercase;transition:color .2s;}
+  .nav-links a:hover{color:var(--accent);}
+
+  /* HERO */
+  #hero{min-height:100vh;display:flex;align-items:center;padding:0 5%;padding-top:80px;position:relative;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%, rgba(200,255,0,0.06) 0%, transparent 65%), radial-gradient(ellipse at 20% 80%, rgba(255,60,172,0.07) 0%, transparent 60%);}
+  .hero-content{position:relative;z-index:1;max-width:760px;}
+  .hero-tag{display:inline-block;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.3);color:var(--accent);font-size:.78rem;letter-spacing:3px;text-transform:uppercase;padding:.4rem 1rem;border-radius:2px;margin-bottom:1.5rem;}
+  h1{font-size:clamp(2.8rem,6vw,5.5rem);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:1.5rem;}
+  h1 span{color:var(--accent);}
+  .hero-sub{font-size:1.1rem;color:var(--muted);max-width:520px;margin-bottom:2.5rem;line-height:1.8;}
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn-primary{background:var(--accent);color:#0D0D0D;padding:.8rem 2rem;font-weight:700;font-size:.9rem;letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;transition:transform .15s,opacity .15s;}
+  .btn-primary:hover{opacity:.85;transform:translateY(-1px);}
+  .btn-outline{background:transparent;color:var(--text);padding:.8rem 2rem;font-weight:600;font-size:.9rem;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s;}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+  .hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);}
+  .stat-num{font-size:2.2rem;font-weight:800;color:var(--accent);}
+  .stat-label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+
+  /* SECTIONS */
+  section{padding:6rem 5%;}
+  .section-tag{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;}
+  .section-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-1px;margin-bottom:1rem;}
+  .section-sub{color:var(--muted);max-width:540px;margin-bottom:3rem;line-height:1.8;}
+  .divider{height:1px;background:var(--border);margin:0 5%;}
+
+  /* ABOUT */
+  #about{background:var(--surface);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+  .about-img{aspect-ratio:4/5;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:5rem;color:var(--border);position:relative;overflow:hidden;}
+  .about-img::after{content:'AB';position:absolute;font-size:5rem;font-weight:800;color:rgba(1, 245, 50, 0.961);letter-spacing:-4px;} */
+  .about-text p{color:var(--muted);line-height:1.9;margin-bottom:1.2rem;}
+  .about-highlights{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;}
+  .highlight-pill{background:rgba(200,255,0,0.07);border:1px solid rgba(200,255,0,0.2);color:var(--accent);font-size:.8rem;letter-spacing:1px;text-transform:uppercase;padding:.4rem .9rem;border-radius:2px;}
+
+  /* PROJECTS */
+  #projects{background:var(--bg);}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+  .project-card{background:var(--card);border:1px solid var(--border);padding:2rem;transition:border-color .2s,transform .2s;cursor:pointer;position:relative;overflow:hidden;}
+  .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+  .project-card:hover{border-color:rgba(200,255,0,0.3);transform:translateY(-3px);}
+  .project-card:hover::before{transform:scaleX(1);}
+  .project-cat{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:.8rem;}
+  .project-title{font-size:1.2rem;font-weight:700;margin-bottom:.8rem;}
+  .project-desc{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:1.5rem;}
+  .project-result{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--accent);font-weight:600;}
+  .project-result span{width:6px;height:6px;background:var(--accent);display:inline-block;}
+
+  /* SKILLS */
+  #skills{background:var(--surface);}
+  .skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+  .skill-group{margin-bottom:2.5rem;}
+  .skill-group-title{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:1.2rem;}
+  .skill-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;}
+  .skill-name{font-size:.9rem;font-weight:500;}
+  .skill-track{flex:1;height:3px;background:var(--border);margin:0 1rem;position:relative;}
+  .skill-fill{height:100%;background:var(--accent);transition:width 1s ease;}
+  .skill-pct{font-size:.8rem;color:var(--muted);min-width:32px;text-align:right;}
+  .tools-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.5rem;}
+  .tool-badge{background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:.8rem;padding:.35rem .8rem;letter-spacing:.5px;}
+
+  /* CONTACT */
+  #contact{background:var(--bg);text-align:center;}
+  .contact-inner{max-width:600px;margin:0 auto;}
+  .contact-email{font-size:clamp(1.5rem,3vw,2.5rem);font-weight:800;color:var(--accent);text-decoration:none;display:block;margin:2rem 0;letter-spacing:-1px;transition:opacity .2s;}
+  .contact-email:hover{opacity:.7;}
+  .social-links{display:flex;justify-content:center;gap:1.2rem;margin:2rem 0;}
+  .social-link{background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:.8rem;padding:.6rem 1.4rem;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:border-color .2s,color .2s;}
+  .social-link:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* FOOTER */
+  footer{background:var(--surface);padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);}
+  footer p{color:var(--muted);font-size:.8rem;}
+
+  @media(max-width:768px){
+    .about-grid,.skills-layout{grid-template-columns:1fr;}
+    .hero-stats{gap:1.5rem;}
+    nav .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">BABAAR</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for new projects</div>
+    <h1>Building Brands<br/>That <span>Demand</span><br/>Attention.</h1>
+    <p class="hero-sub">I'm Abdullah Babar, a Brand Strategist & Marketing Manager with 3+ years turning bold ideas into campaigns that convert, communities that grow, and brands people remember.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Let's Talk</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Brands Launched</div>
+      </div>
+      <div>
+        <div class="stat-num">12M+</div>
+        <div class="stat-label">Audience Reached</div>
+      </div>
+      <div>
+        <div class="stat-num">3×</div>
+        <div class="stat-label">Avg. ROI Delivered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img"></div>
+    <div class="about-text">
+      <p class="section-tag">About Me</p>
+      <h2 class="section-title">Strategy Meets<br/>Brand</h2>
+      <p>I believe the best marketing doesn't feel like marketing. It feels like a conversation — one that starts with deep audience insight and ends with genuine connection.</p>
+      <p>From scrappy startups to Fortune 500 rebrands, I've worked across industries including tech, lifestyle, and FMCG — leading cross-functional teams, owning campaign P&Ls, and building brand identities from scratch.</p>
+      <p>When I'm not shaping brand strategy, I'm mentoring junior marketers, writing about consumer behavior, and obsessing over what makes people click, buy, and stay loyal.</p>
+      <div class="about-highlights">
+        <span class="highlight-pill">Brand Strategy</span>
+        <span class="highlight-pill">Campaign Management</span>
+        <span class="highlight-pill">Client Servicing</span>
+        <span class="highlight-pill">Content Direction</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-tag">Selected Work</p>
+  <h2 class="section-title">Projects &amp; Case Studies</h2>
+  <p class="section-sub">A snapshot of campaigns and brand projects that moved the needle — and the stories behind them.</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-cat">Rebrand / Identity</div>
+      <div class="project-title">NovaPulse Tech — Brand Overhaul</div>
+      <div class="project-desc">Led end-to-end repositioning for a B2B SaaS brand entering the enterprise market. Developed new voice, visual system, and GTM messaging.</div>
+      <div class="project-result"><span></span> 58% increase in qualified pipeline in 6 months</div>
+    </div>
+    <div class="project-card">
+      <div class="project-cat">Social / Influencer</div>
+      <div class="project-title">Bloom Cosmetics — Launch Campaign</div>
+      <div class="project-desc">Orchestrated a multi-platform influencer campaign for a clean beauty launch. Managed 30+ creators, content calendar, and paid amplification.</div>
+      <div class="project-result"><span></span> 2.1M impressions in 30 days, sold out in week 1</div>
+    </div>
+    <div class="project-card">
+      <div class="project-cat">Demand Generation</div>
+      <div class="project-title">Krato Finance — Growth Sprint</div>
+      <div class="project-desc">Designed and executed a 90-day demand gen strategy combining SEO, email nurture sequences, and paid social for a fintech startup.</div>
+      <div class="project-result"><span></span> CAC reduced by 34%, MQLs up 120%</div>
+    </div>
+    <div class="project-card">
+      <div class="project-cat">Content Strategy</div>
+      <div class="project-title">Meridian Foods — Editorial Overhaul</div>
+      <div class="project-desc">Restructured content strategy and built an in-house team for an FMCG brand. Shifted from product-push to community-led storytelling.</div>
+      <div class="project-result"><span></span> 3× organic traffic growth in 12 months</div>
+    </div>
+    <div class="project-card">
+      <div class="project-cat">Brand Activation</div>
+      <div class="project-title">UrbanEdge Apparel — Pop-Up Series</div>
+      <div class="project-desc">Conceptualized and produced a 5-city experiential pop-up tour. Handled brand storytelling, PR outreach, and post-event digital amplification.</div>
+      <div class="project-result"><span></span> 80K+ footfall, 15K new email subscribers</div>
+    </div>
+    <div class="project-card">
+      <div class="project-cat">Integrated Campaign</div>
+      <div class="project-title">Solara Energy — Awareness Push</div>
+      <div class="project-desc">Directed a full-funnel awareness campaign for a renewable energy brand across OOH, digital, and PR — timed to a major policy announcement.</div>
+      <div class="project-result"><span></span> Brand recall up 47% in target market</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-tag">Expertise</p>
+  <h2 class="section-title">Skills &amp; Tools</h2>
+  <p class="section-sub">A blend of creative instinct and analytical rigor — built across agencies, in-house teams, and freelance engagements.</p>
+  <div class="skills-layout">
+    <div>
+      <div class="skill-group">
+        <div class="skill-group-title">Core Competencies</div>
+        <div class="skill-item">
+          <span class="skill-name">Brand Strategy</span>
+          <div class="skill-track"><div class="skill-fill" style="width:95%"></div></div>
+          <span class="skill-pct">95%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Campaign Management</span>
+          <div class="skill-track"><div class="skill-fill" style="width:90%"></div></div>
+          <span class="skill-pct">90%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Content Direction</span>
+          <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Paid Media (Meta / Google)</span>
+          <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Marketing Analytics</span>
+          <div class="skill-track"><div class="skill-fill" style="width:78%"></div></div>
+          <span class="skill-pct">78%</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tools & Platforms</div>
+        <div class="tools-grid">
+          <span class="tool-badge">HubSpot</span>
+          <span class="tool-badge">Salesforce</span>
+          <span class="tool-badge">Google Analytics</span>
+          <span class="tool-badge">Meta Ads</span>
+          <span class="tool-badge">Figma</span>
+          <span class="tool-badge">Notion</span>
+          <span class="tool-badge">Mailchimp</span>
+          <span class="tool-badge">Semrush</span>
+          <span class="tool-badge">Hootsuite</span>
+          <span class="tool-badge">Asana</span>
+          <span class="tool-badge">Canva Pro</span>
+          <span class="tool-badge">Tableau</span>
+        </div>
+      </div>
+      <div class="skill-group" style="margin-top:2rem;">
+        <div class="skill-group-title">Industries</div>
+        <div class="tools-grid">
+          <span class="tool-badge">Tech / SaaS</span>
+          <span class="tool-badge">FMCG</span>
+          <span class="tool-badge">Fashion</span>
+          <span class="tool-badge">Fintech</span>
+          <span class="tool-badge">Beauty</span>
+          <span class="tool-badge">Energy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="section-tag">Get In Touch</p>
+    <h2 class="section-title">Let's Build<br/>Something Bold.</h2>
+    <p class="section-sub" style="margin:0 auto 1rem;">Open to brand strategy projects, fractional CMO engagements, Project Management and consultation. Let's talk.</p>
+    <a href="mailto:abdullah.babar.ws@gmail.com" class="contact-email">abdullah.babar.ws@gmail.com</a>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/a-babar/" class="social-link" target="_blank">LinkedIn</a>
+      <a href="#projects" class="social-link">Resume</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Abdullah Babar.    All rights reserved.</p>
+  <p>Brand Strategist & Marketing Manager</p>
+</footer>
+
+</body>
+</html>
